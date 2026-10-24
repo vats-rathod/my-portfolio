@@ -133,7 +133,7 @@ function Header() {
 }
 
 // ─── HERO SYSTEM VISUALIZATION (ARCHITECTURAL CONSOLE) ──────────────────────
-function HeroSystemVisual() {
+function HeroAbstractSculpture() {
   const ref = useRef(null)
 
   useEffect(() => {
@@ -141,13 +141,13 @@ function HeroSystemVisual() {
     const onMove = (e) => {
       if (!ref.current || window.innerWidth < 980) return
       const rect = ref.current.getBoundingClientRect()
-      const x = (e.clientX - (rect.left + rect.width / 2)) / 30
-      const y = (e.clientY - (rect.top + rect.height / 2)) / 30
-      ref.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`
+      const x = (e.clientX - (rect.left + rect.width / 2)) / 28
+      const y = (e.clientY - (rect.top + rect.height / 2)) / 28
+      ref.current.style.transform = `perspective(1200px) rotateY(${x}deg) rotateX(${-y}deg)`
     }
     const onLeave = () => {
       if (ref.current) {
-        ref.current.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)'
+        ref.current.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg)'
       }
     }
     const target = ref.current
@@ -163,100 +163,126 @@ function HeroSystemVisual() {
 
   return (
     <div className="hero-visual-wrapper" aria-hidden="true">
-      <div className="hero-system-console" ref={ref}>
-        <div className="console-header">
-          <div className="console-status">
-            <span className="console-live-led" />
-            <span>AGENT_ORCHESTRATION_CORE</span>
-          </div>
-          <span className="console-metric">SYS_OK // LATENCY: 18ms</span>
-        </div>
+      <div className="hero-sculpture-card" ref={ref}>
+        <div className="sculpture-ambient-glow" />
+        <svg viewBox="0 0 500 500" className="hero-sculpture-svg" role="img" focusable="false">
+          <defs>
+            <linearGradient id="sMonolithTop" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#1a3b5c" />
+              <stop offset="50%" stopColor="#0c233c" />
+              <stop offset="100%" stopColor="#061524" />
+            </linearGradient>
+            <linearGradient id="sMonolithLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0e2842" />
+              <stop offset="100%" stopColor="#040c17" />
+            </linearGradient>
+            <linearGradient id="sMonolithRight" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#071b2e" />
+              <stop offset="100%" stopColor="#020810" />
+            </linearGradient>
+            <linearGradient id="sGlassTop" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#55e1d0" stopOpacity="0.38" />
+              <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.14" />
+              <stop offset="100%" stopColor="#0c233c" stopOpacity="0.28" />
+            </linearGradient>
+            <linearGradient id="sGlassFace" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#071a2e" stopOpacity="0.7" />
+            </linearGradient>
+            <linearGradient id="sCyanRim" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#55e1d0" stopOpacity="0.9" />
+              <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.55" />
+              <stop offset="100%" stopColor="#55e1d0" stopOpacity="0.08" />
+            </linearGradient>
+            <linearGradient id="sCoreGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#55e1d0" stopOpacity="0.85" />
+              <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.55" />
+              <stop offset="100%" stopColor="#0c233c" stopOpacity="0" />
+            </linearGradient>
+            <radialGradient id="sAura" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#55e1d0" stopOpacity="0.35" />
+              <stop offset="40%" stopColor="#38bdf8" stopOpacity="0.12" />
+              <stop offset="100%" stopColor="#071321" stopOpacity="0" />
+            </radialGradient>
+            <filter id="sGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="7" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
 
-        <div className="console-canvas">
-          <svg viewBox="0 0 480 330" className="console-svg" role="img" focusable="false">
-            <defs>
-              <linearGradient id="coreGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#55e1d0" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.3" />
-              </linearGradient>
-              <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#0d243b" />
-                <stop offset="100%" stopColor="#081827" />
-              </linearGradient>
-            </defs>
+          {/* Central radial aura */}
+          <circle cx="250" cy="250" r="165" fill="url(#sAura)" />
 
-            {/* Connecting Bus Circuits */}
-            <path d="M240,165 L100,65" className="circuit-line-active" />
-            <path d="M240,165 L380,65" className="circuit-line-active" />
-            <path d="M240,165 L100,265" className="circuit-line-active" />
-            <path d="M240,165 L380,265" className="circuit-line-active" />
+          {/* Outer orbital ring — slow spin */}
+          <g className="sculpture-orbital-ring">
+            <ellipse cx="250" cy="250" rx="185" ry="78"
+              fill="none" stroke="rgba(85,225,208,0.16)" strokeWidth="1"
+              strokeDasharray="5 9 2 9" />
+            <circle cx="435" cy="250" r="3" fill="#55e1d0" opacity="0.65" />
+            <circle cx="65"  cy="250" r="2.5" fill="#38bdf8" opacity="0.45" />
+          </g>
 
-            <path d="M100,65 H170" className="circuit-line" />
-            <path d="M380,65 H310" className="circuit-line" />
-            <path d="M100,265 H170" className="circuit-line" />
-            <path d="M380,265 H310" className="circuit-line" />
+          {/* Inner orbital ring — counter-spin */}
+          <g className="sculpture-orbital-ring-reverse">
+            <ellipse cx="250" cy="250" rx="138" ry="138"
+              fill="none" stroke="rgba(56,189,248,0.1)" strokeWidth="1"
+              strokeDasharray="3 13"
+              transform="rotate(-20 250 250)" />
+          </g>
 
-            {/* Traveling Data Packet Pulses */}
-            <circle cx="170" cy="115" r="3.5" className="packet-pulse" />
-            <circle cx="310" cy="115" r="3.5" className="packet-pulse" />
-            <circle cx="170" cy="215" r="3.5" className="packet-pulse" />
-            <circle cx="310" cy="215" r="3.5" className="packet-pulse" />
+          {/* Lower plinth base */}
+          <g transform="translate(0,38)">
+            <polygon points="250,370 382,294 250,218 118,294" fill="#02070e" opacity="0.75" />
+            <polygon points="118,294 250,370 250,412 118,336" fill="url(#sMonolithLeft)" />
+            <polygon points="250,370 382,294 382,336 250,412" fill="url(#sMonolithRight)" />
+            <polygon points="250,370 382,294 250,218 118,294"
+              fill="url(#sMonolithTop)" stroke="rgba(85,225,208,0.18)" strokeWidth="0.8" />
+          </g>
 
-            {/* Top-Left Node: IBM ELM ECOSYSTEM */}
-            <g className="sys-node">
-              <rect x="20" y="35" width="160" height="60" rx="4" className="sys-node-bg" />
-              <text x="34" y="58" className="sys-node-title">IBM ELM PLATFORM</text>
-              <text x="34" y="74" className="sys-node-desc">Requirements &amp; Lifecycle</text>
-              <text x="34" y="86" className="sys-node-tag">OSLC · REST · SCHEMAS</text>
-            </g>
+          {/* Back tier slab */}
+          <polygon points="250,148 342,200 250,252 158,200" fill="url(#sMonolithTop)" opacity="0.88" />
+          <polygon points="158,200 250,252 250,268 158,216" fill="url(#sMonolithLeft)" />
+          <polygon points="250,252 342,200 342,216 250,268" fill="url(#sMonolithRight)" />
 
-            {/* Top-Right Node: MCP TOOL PROTOCOL */}
-            <g className="sys-node">
-              <rect x="300" y="35" width="160" height="60" rx="4" className="sys-node-bg" />
-              <text x="314" y="58" className="sys-node-title">MCP TOOL SERVERS</text>
-              <text x="314" y="74" className="sys-node-desc">Protocol Tool Access</text>
-              <text x="314" y="86" className="sys-node-tag">JSON-RPC · stdio · SSE</text>
-            </g>
+          {/* Central hexagonal monolith */}
+          <polygon points="250,108 250,262 143,200 143,138"
+            fill="url(#sMonolithLeft)" stroke="rgba(85,225,208,0.13)" strokeWidth="0.8" />
+          <polygon points="250,108 357,138 357,200 250,262"
+            fill="url(#sMonolithRight)" stroke="rgba(56,189,248,0.13)" strokeWidth="0.8" />
+          <polygon points="250,68 357,138 250,108 143,138"
+            fill="url(#sMonolithTop)" stroke="url(#sCyanRim)" strokeWidth="1.2" />
 
-            {/* Bottom-Left Node: LANGGRAPH STATE ENGINE */}
-            <g className="sys-node">
-              <rect x="20" y="235" width="160" height="60" rx="4" className="sys-node-bg" />
-              <text x="34" y="258" className="sys-node-title">LANGGRAPH ENGINE</text>
-              <text x="34" y="274" className="sys-node-desc">Stateful Multi-step Agents</text>
-              <text x="34" y="286" className="sys-node-tag">DAG · CHECKPOINTS · HIL</text>
-            </g>
+          {/* Glowing apex edges */}
+          <line x1="250" y1="68" x2="250" y2="262" stroke="#55e1d0" strokeWidth="1.4" opacity="0.82" />
+          <line x1="250" y1="68" x2="357" y2="138" stroke="#38bdf8" strokeWidth="1.1" opacity="0.88" />
+          <line x1="250" y1="68" x2="143" y2="138" stroke="#55e1d0" strokeWidth="1.1" opacity="0.88" />
 
-            {/* Bottom-Right Node: FASTAPI BACKEND SERVICES */}
-            <g className="sys-node">
-              <rect x="300" y="235" width="160" height="60" rx="4" className="sys-node-bg" />
-              <text x="314" y="258" className="sys-node-title">FASTAPI BACKEND</text>
-              <text x="314" y="274" className="sys-node-desc">Async Services &amp; DB</text>
-              <text x="314" y="286" className="sys-node-tag">PYDANTIC · POSTGRESQL</text>
-            </g>
+          {/* Left glass shard */}
+          <polygon points="108,178 190,132 190,258 108,304"
+            fill="url(#sGlassFace)" stroke="rgba(85,225,208,0.42)" strokeWidth="0.9" />
+          <polygon points="108,178 190,132 222,150 138,196"
+            fill="url(#sGlassTop)" stroke="rgba(85,225,208,0.68)" strokeWidth="0.9" />
+          <line x1="108" y1="178" x2="108" y2="304" stroke="#55e1d0" strokeWidth="1.1" opacity="0.72" />
 
-            {/* Central Agent Orchestrator Core */}
-            <circle cx="240" cy="165" r="54" className="core-ring-outer" />
-            <circle cx="240" cy="165" r="44" className="core-ring-inner" />
-            <circle cx="240" cy="165" r="38" fill="url(#nodeGrad)" stroke="rgba(85,225,208,0.4)" strokeWidth="1" />
-            <text x="240" y="161" textAnchor="middle" className="core-title">AGENT CORE</text>
-            <text x="240" y="176" textAnchor="middle" className="core-sub">ORCHESTRATOR</text>
-          </svg>
-        </div>
+          {/* Right glass shard */}
+          <polygon points="312,132 392,178 392,304 312,258"
+            fill="url(#sGlassFace)" stroke="rgba(56,189,248,0.38)" strokeWidth="0.9" />
+          <polygon points="278,150 360,196 392,178 312,132"
+            fill="url(#sGlassTop)" stroke="rgba(56,189,248,0.58)" strokeWidth="0.9" />
+          <line x1="392" y1="178" x2="392" y2="304" stroke="#38bdf8" strokeWidth="1.1" opacity="0.72" />
 
-        <div className="console-telemetry-bar">
-          <div className="telemetry-item">
-            <span className="telemetry-label">Active Agents</span>
-            <span className="telemetry-val">STATEFUL_DAG</span>
-          </div>
-          <div className="telemetry-item">
-            <span className="telemetry-label">Tool Protocol</span>
-            <span className="telemetry-val">MCP / v1.2</span>
-          </div>
-          <div className="telemetry-item">
-            <span className="telemetry-label">Runtime Layer</span>
-            <span className="telemetry-val">FASTAPI · ISL</span>
-          </div>
-        </div>
+          {/* Floating crystalline core nexus */}
+          <g filter="url(#sGlow)">
+            <polygon points="250,193 287,240 250,287 213,240" fill="url(#sCoreGlow)" opacity="0.78" />
+            <polygon points="250,193 250,287 287,240" fill="#38bdf8" opacity="0.38" />
+            <polygon points="250,193 250,287 213,240" fill="#55e1d0" opacity="0.58" />
+            <circle cx="250" cy="240" r="4" fill="#ffffff" opacity="0.9" />
+          </g>
+
+          {/* Axis tick marks */}
+          <path d="M250,42 V52 M250,448 V458 M42,250 H52 M448,250 H458"
+            stroke="rgba(85,225,208,0.28)" strokeWidth="1" />
+        </svg>
       </div>
     </div>
   )
@@ -309,7 +335,7 @@ function Hero() {
           </div>
         </div>
 
-        <HeroSystemVisual />
+        <HeroAbstractSculpture />
       </div>
     </section>
   )
@@ -427,144 +453,400 @@ const CAP_ICONS = {
 
 function CapDiagram({ capKey }) {
   switch (capKey) {
+
+    /* ── 1. AI AGENT INFRASTRUCTURE ─────────────────────────────────────────
+       Central processing core with radial connections and satellite nodes.
+       Thin strokes, localized glow, no text. ──────────────────────────────── */
     case 'infra':
-      // Multi-tier AI Agent Infrastructure Diagram
       return (
         <svg viewBox="0 0 340 100" className="bento-svg-diagram" aria-hidden="true">
-          <rect x="10" y="15" width="85" height="70" rx="4" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="52" y="38" textAnchor="middle" fill="#91a8be" fontSize="9" fontFamily="monospace">FASTAPI</text>
-          <text x="52" y="52" textAnchor="middle" fill="#55e1d0" fontSize="10" fontWeight="600" fontFamily="monospace">SERVICE</text>
-          <text x="52" y="68" textAnchor="middle" fill="#415e78" fontSize="8" fontFamily="monospace">ASYNC ROUTER</text>
+          <defs>
+            <radialGradient id="i-aura" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#55e1d0" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#55e1d0" stopOpacity="0" />
+            </radialGradient>
+            <filter id="i-glow" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="2.8" result="b" />
+              <feComposite in="SourceGraphic" in2="b" operator="over" />
+            </filter>
+          </defs>
 
-          <path d="M95,50 H125" stroke="#55e1d0" strokeWidth="1.2" strokeDasharray="3 3" />
-          <circle cx="110" cy="50" r="2.5" fill="#55e1d0" />
+          {/* Ambient field */}
+          <ellipse cx="170" cy="50" rx="52" ry="52" fill="url(#i-aura)" />
 
-          <rect x="125" y="10" width="90" height="80" rx="4" fill="#0b233a" stroke="#55e1d0" strokeWidth="1.2" />
-          <text x="170" y="34" textAnchor="middle" fill="#55e1d0" fontSize="9" fontWeight="600" fontFamily="monospace">AGENT CORE</text>
-          <text x="170" y="48" textAnchor="middle" fill="#f3f7fc" fontSize="8.5" fontFamily="monospace">LANGGRAPH</text>
-          <text x="170" y="62" textAnchor="middle" fill="#91a8be" fontSize="8" fontFamily="monospace">STATE ENGINE</text>
-          <text x="170" y="76" textAnchor="middle" fill="#e5a93c" fontSize="7.5" fontFamily="monospace">● ORCHESTRATING</text>
+          {/* Outer precision ring */}
+          <circle cx="170" cy="50" r="44" fill="none"
+            stroke="rgba(85,225,208,0.18)" strokeWidth="0.75" strokeDasharray="3 5" />
 
-          <path d="M215,35 H245" stroke="#38bdf8" strokeWidth="1.2" />
-          <path d="M215,65 H245" stroke="#38bdf8" strokeWidth="1.2" />
+          {/* Inner structural ring */}
+          <circle cx="170" cy="50" r="28" fill="none"
+            stroke="rgba(56,189,248,0.28)" strokeWidth="0.75" />
 
-          <rect x="245" y="15" width="85" height="32" rx="3" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="287" y="32" textAnchor="middle" fill="#38bdf8" fontSize="8.5" fontFamily="monospace">MCP SERVERS</text>
-          <text x="287" y="42" textAnchor="middle" fill="#64829f" fontSize="7" fontFamily="monospace">TOOL DISPATCH</text>
+          {/* Radial spokes to core */}
+          <line x1="170" y1="22" x2="170" y2="34" stroke="rgba(85,225,208,0.5)" strokeWidth="0.75" />
+          <line x1="170" y1="66" x2="170" y2="78" stroke="rgba(85,225,208,0.5)" strokeWidth="0.75" />
+          <line x1="142" y1="50" x2="130" y2="50" stroke="rgba(85,225,208,0.5)" strokeWidth="0.75" />
+          <line x1="198" y1="50" x2="210" y2="50" stroke="rgba(85,225,208,0.5)" strokeWidth="0.75" />
+          {/* Diagonal spokes */}
+          <line x1="150" y1="30" x2="142" y2="22" stroke="rgba(56,189,248,0.35)" strokeWidth="0.75" />
+          <line x1="190" y1="30" x2="198" y2="22" stroke="rgba(56,189,248,0.35)" strokeWidth="0.75" />
+          <line x1="150" y1="70" x2="142" y2="78" stroke="rgba(56,189,248,0.35)" strokeWidth="0.75" />
+          <line x1="190" y1="70" x2="198" y2="78" stroke="rgba(56,189,248,0.35)" strokeWidth="0.75" />
 
-          <rect x="245" y="53" width="85" height="32" rx="3" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="287" y="70" textAnchor="middle" fill="#91a8be" fontSize="8.5" fontFamily="monospace">IBM ELM DB</text>
-          <text x="287" y="80" textAnchor="middle" fill="#64829f" fontSize="7" fontFamily="monospace">SCHEMA SYNC</text>
+          {/* Bus lines to satellite nodes */}
+          <line x1="126" y1="50" x2="84"  y2="50" stroke="rgba(85,225,208,0.3)" strokeWidth="0.75" />
+          <line x1="214" y1="50" x2="256" y2="50" stroke="rgba(85,225,208,0.3)" strokeWidth="0.75" />
+          <line x1="170" y1="6"  x2="170" y2="14" stroke="rgba(56,189,248,0.25)" strokeWidth="0.75" />
+          <line x1="170" y1="86" x2="170" y2="94" stroke="rgba(56,189,248,0.25)" strokeWidth="0.75" />
+
+          {/* Far-end bus connectors */}
+          <line x1="64"  y1="42" x2="84"  y2="42" stroke="rgba(85,225,208,0.2)" strokeWidth="0.75" />
+          <line x1="64"  y1="58" x2="84"  y2="58" stroke="rgba(85,225,208,0.2)" strokeWidth="0.75" />
+          <line x1="64"  y1="42" x2="64"  y2="58" stroke="rgba(85,225,208,0.2)" strokeWidth="0.75" />
+          <line x1="256" y1="42" x2="276" y2="42" stroke="rgba(85,225,208,0.2)" strokeWidth="0.75" />
+          <line x1="256" y1="58" x2="276" y2="58" stroke="rgba(85,225,208,0.2)" strokeWidth="0.75" />
+          <line x1="276" y1="42" x2="276" y2="58" stroke="rgba(85,225,208,0.2)" strokeWidth="0.75" />
+
+          {/* Satellite nodes */}
+          <circle cx="84"  cy="50" r="3.5" fill="#071827" stroke="rgba(85,225,208,0.55)" strokeWidth="0.8" />
+          <circle cx="256" cy="50" r="3.5" fill="#071827" stroke="rgba(56,189,248,0.55)" strokeWidth="0.8" />
+          <circle cx="170" cy="6"  r="2.5" fill="#071827" stroke="rgba(85,225,208,0.45)" strokeWidth="0.8" />
+          <circle cx="170" cy="94" r="2.5" fill="#071827" stroke="rgba(56,189,248,0.45)" strokeWidth="0.8" />
+          {/* Corner nodes */}
+          <circle cx="142" cy="22" r="2" fill="rgba(56,189,248,0.4)" />
+          <circle cx="198" cy="22" r="2" fill="rgba(56,189,248,0.4)" />
+          <circle cx="142" cy="78" r="2" fill="rgba(85,225,208,0.35)" />
+          <circle cx="198" cy="78" r="2" fill="rgba(85,225,208,0.35)" />
+
+          {/* Core */}
+          <g filter="url(#i-glow)">
+            <circle cx="170" cy="50" r="10" fill="#071827"
+              stroke="#55e1d0" strokeWidth="1" />
+            <circle cx="170" cy="50" r="4"  fill="#55e1d0" opacity="0.9" />
+          </g>
         </svg>
       )
 
+    /* ── 2. BACKEND ENGINEERING ───────────────────────────────────────────────
+       Three receding isometric infrastructure slabs with teal edge lighting
+       and vertical pillars — precise architectural systems illustration. ───── */
     case 'api':
-      // Backend API & Schema Contract Diagram
       return (
         <svg viewBox="0 0 340 100" className="bento-svg-diagram" aria-hidden="true">
-          <rect x="10" y="12" width="145" height="76" rx="4" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="22" y="30" fill="#e5a93c" fontSize="8.5" fontFamily="monospace">POST /api/v1/analyze</text>
-          <path d="M22,38 H145" stroke="#162c42" strokeWidth="1" />
-          <text x="22" y="52" fill="#55e1d0" fontSize="8" fontFamily="monospace">req_id: UUID (PK)</text>
-          <text x="22" y="65" fill="#91a8be" fontSize="8" fontFamily="monospace">payload: PydanticModel</text>
-          <text x="22" y="78" fill="#415e78" fontSize="7.5" fontFamily="monospace">200 OK · 14ms latency</text>
+          <defs>
+            <linearGradient id="a-sA" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#162e46" />
+              <stop offset="100%" stopColor="#071626" />
+            </linearGradient>
+            <linearGradient id="a-sB" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0f2236" />
+              <stop offset="100%" stopColor="#050e1a" />
+            </linearGradient>
+            <linearGradient id="a-sC" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#091a2c" />
+              <stop offset="100%" stopColor="#030810" />
+            </linearGradient>
+            <filter id="a-glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="2.5" result="b" />
+              <feComposite in="SourceGraphic" in2="b" operator="over" />
+            </filter>
+          </defs>
 
-          <path d="M155,50 H185" stroke="#55e1d0" strokeWidth="1.2" />
-          <polygon points="185,50 179,46 179,54" fill="#55e1d0" />
+          {/* Slab C — foundation */}
+          <polygon points="170,74 295,45 170,18 45,45"
+            fill="url(#a-sC)" stroke="rgba(85,225,208,0.14)" strokeWidth="0.75" />
+          <polygon points="45,45 170,74 170,82 45,53"   fill="#030c16" />
+          <polygon points="170,74 295,45 295,53 170,82" fill="#020709" />
 
-          <rect x="185" y="12" width="145" height="76" rx="4" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="197" y="30" fill="#38bdf8" fontSize="8.5" fontFamily="monospace">TABLE: elm_reqs_v2</text>
-          <path d="M197,38 H320" stroke="#162c42" strokeWidth="1" />
-          <text x="197" y="52" fill="#91a8be" fontSize="8" fontFamily="monospace">id: int · item_uri: text</text>
-          <text x="197" y="65" fill="#91a8be" fontSize="8" fontFamily="monospace">quality_score: float</text>
-          <text x="197" y="78" fill="#55e1d0" fontSize="7.5" fontFamily="monospace">INDEXED · POSTGRESQL</text>
+          {/* Pillar verticals C→B */}
+          <line x1="95"  y1="48" x2="95"  y2="40" stroke="rgba(56,189,248,0.35)" strokeWidth="0.75" />
+          <line x1="170" y1="68" x2="170" y2="60" stroke="rgba(85,225,208,0.45)" strokeWidth="0.75" />
+          <line x1="245" y1="48" x2="245" y2="40" stroke="rgba(56,189,248,0.35)" strokeWidth="0.75" />
+
+          {/* Slab B — mid */}
+          <polygon points="170,60 286,34 170,10 54,34"
+            fill="url(#a-sB)" stroke="rgba(85,225,208,0.22)" strokeWidth="0.75" />
+          <polygon points="54,34 170,60 170,68 54,42"   fill="#061524" />
+          <polygon points="170,60 286,34 286,42 170,68" fill="#030c16" />
+
+          {/* Pillar verticals B→A */}
+          <line x1="110" y1="38" x2="110" y2="30" stroke="rgba(85,225,208,0.4)" strokeWidth="0.75" />
+          <line x1="170" y1="54" x2="170" y2="46" stroke="rgba(85,225,208,0.55)" strokeWidth="0.75" />
+          <line x1="230" y1="38" x2="230" y2="30" stroke="rgba(85,225,208,0.4)" strokeWidth="0.75" />
+
+          {/* Slab A — top processing plane */}
+          <polygon points="170,46 278,24 170,4 62,24"
+            fill="url(#a-sA)" stroke="rgba(85,225,208,0.38)" strokeWidth="0.75" />
+          <polygon points="62,24  170,46 170,54 62,32"  fill="#081c2e" />
+          <polygon points="170,46 278,24 278,32 170,54" fill="#040e1c" />
+
+          {/* Top rim highlight */}
+          <line x1="170" y1="4" x2="62"  y2="24" stroke="#55e1d0" strokeWidth="1.1" opacity="0.75" />
+          <line x1="170" y1="4" x2="278" y2="24" stroke="#38bdf8" strokeWidth="0.9" opacity="0.8"  />
+
+          {/* Apex node */}
+          <g filter="url(#a-glow)">
+            <circle cx="170" cy="4" r="2.5" fill="#55e1d0" opacity="0.9" />
+          </g>
+
+          {/* Flanking accent nodes */}
+          <circle cx="62"  cy="24" r="1.8" fill="none" stroke="rgba(85,225,208,0.5)" strokeWidth="0.7" />
+          <circle cx="278" cy="24" r="1.8" fill="none" stroke="rgba(56,189,248,0.5)" strokeWidth="0.7" />
+          <circle cx="45"  cy="45" r="1.8" fill="none" stroke="rgba(85,225,208,0.35)" strokeWidth="0.7" />
+          <circle cx="295" cy="45" r="1.8" fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="0.7" />
         </svg>
       )
 
+    /* ── 3. AGENTIC WORKFLOWS ─────────────────────────────────────────────────
+       A branching DAG: entry node → central processor → two output branches
+       that reconverge. Clean vector paths with subtle directional arrows. ──── */
     case 'agents':
-      // LangGraph Stateful Cyclic DAG
       return (
         <svg viewBox="0 0 240 100" className="bento-svg-diagram" aria-hidden="true">
-          <circle cx="35" cy="50" r="16" fill="#081827" stroke="#55e1d0" strokeWidth="1" />
-          <text x="35" y="53" textAnchor="middle" fill="#55e1d0" fontSize="7.5" fontFamily="monospace">START</text>
+          <defs>
+            <filter id="ag-glow" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="2.5" result="b" />
+              <feComposite in="SourceGraphic" in2="b" operator="over" />
+            </filter>
+          </defs>
 
-          <path d="M51,50 H75" stroke="#55e1d0" strokeWidth="1" />
-          <polygon points="75,50 69,47 69,53" fill="#55e1d0" />
+          {/* Entry → processor */}
+          <line x1="28" y1="50" x2="68" y2="50" stroke="rgba(85,225,208,0.55)" strokeWidth="0.9" />
+          <polygon points="68,50 62,47 62,53" fill="rgba(85,225,208,0.7)" />
 
-          <rect x="75" y="34" width="56" height="32" rx="3" fill="#0c253e" stroke="#38bdf8" strokeWidth="1" />
-          <text x="103" y="49" textAnchor="middle" fill="#f3f7fc" fontSize="8" fontFamily="monospace">ANALYZE</text>
-          <text x="103" y="59" textAnchor="middle" fill="#91a8be" fontSize="7" fontFamily="monospace">LangChain</text>
+          {/* Processor box */}
+          <rect x="68" y="36" width="36" height="28" rx="3"
+            fill="#071827" stroke="rgba(85,225,208,0.45)" strokeWidth="0.85" />
+          {/* Inner detail lines */}
+          <line x1="76" y1="46" x2="96" y2="46" stroke="rgba(85,225,208,0.4)" strokeWidth="0.75" />
+          <line x1="76" y1="54" x2="90" y2="54" stroke="rgba(56,189,248,0.3)" strokeWidth="0.75" />
 
-          <path d="M131,45 L155,30" stroke="#55e1d0" strokeWidth="1" />
-          <path d="M131,55 L155,70" stroke="#55e1d0" strokeWidth="1" />
+          {/* Branch split from processor */}
+          <line x1="104" y1="50" x2="116" y2="50" stroke="rgba(85,225,208,0.4)" strokeWidth="0.75" />
+          <line x1="116" y1="50" x2="116" y2="28" stroke="rgba(85,225,208,0.4)" strokeWidth="0.75" />
+          <line x1="116" y1="50" x2="116" y2="72" stroke="rgba(56,189,248,0.4)" strokeWidth="0.75" />
 
-          <rect x="155" y="16" width="60" height="26" rx="3" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="185" y="32" textAnchor="middle" fill="#e5a93c" fontSize="7.5" fontFamily="monospace">TOOL_CALL</text>
+          {/* Upper branch */}
+          <line x1="116" y1="28" x2="148" y2="28" stroke="rgba(85,225,208,0.45)" strokeWidth="0.85" />
+          <polygon points="148,28 142,25 142,31" fill="rgba(85,225,208,0.65)" />
+          <rect x="148" y="20" width="30" height="16" rx="2.5"
+            fill="#071827" stroke="rgba(85,225,208,0.4)" strokeWidth="0.8" />
+          <line x1="154" y1="27" x2="172" y2="27" stroke="rgba(85,225,208,0.35)" strokeWidth="0.75" />
 
-          <rect x="155" y="58" width="60" height="26" rx="3" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="185" y="74" textAnchor="middle" fill="#55e1d0" fontSize="7.5" fontFamily="monospace">CRITIQUE</text>
+          {/* Lower branch */}
+          <line x1="116" y1="72" x2="148" y2="72" stroke="rgba(56,189,248,0.45)" strokeWidth="0.85" />
+          <polygon points="148,72 142,69 142,75" fill="rgba(56,189,248,0.65)" />
+          <rect x="148" y="64" width="30" height="16" rx="2.5"
+            fill="#071827" stroke="rgba(56,189,248,0.38)" strokeWidth="0.8" />
+          <line x1="154" y1="71" x2="172" y2="71" stroke="rgba(56,189,248,0.3)" strokeWidth="0.75" />
 
-          {/* Loopback curve */}
-          <path d="M185,16 C185,2 103,2 103,34" fill="none" stroke="#55e1d0" strokeWidth="1" strokeDasharray="2 2" />
+          {/* Reconverge */}
+          <line x1="178" y1="28" x2="196" y2="28" stroke="rgba(85,225,208,0.35)" strokeWidth="0.75" />
+          <line x1="178" y1="72" x2="196" y2="72" stroke="rgba(56,189,248,0.35)" strokeWidth="0.75" />
+          <line x1="196" y1="28" x2="196" y2="72" stroke="rgba(85,225,208,0.3)" strokeWidth="0.75" />
+          <line x1="196" y1="50" x2="212" y2="50" stroke="rgba(85,225,208,0.45)" strokeWidth="0.85" />
+          <polygon points="212,50 206,47 206,53" fill="rgba(85,225,208,0.65)" />
+
+          {/* Terminal node */}
+          <g filter="url(#ag-glow)">
+            <circle cx="212" cy="50" r="5" fill="#071827"
+              stroke="#55e1d0" strokeWidth="0.9" />
+            <circle cx="212" cy="50" r="2" fill="#55e1d0" opacity="0.9" />
+          </g>
+
+          {/* Entry node */}
+          <circle cx="28" cy="50" r="5" fill="#071827"
+            stroke="rgba(85,225,208,0.5)" strokeWidth="0.85" />
+          <circle cx="28" cy="50" r="2" fill="rgba(85,225,208,0.7)" />
+
+          {/* Junction dot */}
+          <circle cx="116" cy="50" r="2.5" fill="rgba(85,225,208,0.55)" />
         </svg>
       )
 
+    /* ── 4. MODEL CONTEXT PROTOCOL ────────────────────────────────────────────
+       Two system endpoints (client/server), a precise protocol bridge with
+       directional arrows, and a central relay node. ──────────────────────── */
     case 'mcp':
-      // Model Context Protocol JSON-RPC Packet Inspector
       return (
         <svg viewBox="0 0 240 100" className="bento-svg-diagram" aria-hidden="true">
-          <rect x="10" y="10" width="220" height="80" rx="4" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="20" y="26" fill="#55e1d0" fontSize="8" fontFamily="monospace">MCP JSON-RPC FRAME</text>
-          <text x="175" y="26" fill="#e5a93c" fontSize="7.5" fontFamily="monospace">v1.2 // OK</text>
-          <path d="M10,32 H230" stroke="#162c42" strokeWidth="1" />
-          <text x="20" y="48" fill="#91a8be" fontSize="8" fontFamily="monospace">{`{ "method": "tools/call",`}</text>
-          <text x="20" y="62" fill="#38bdf8" fontSize="8" fontFamily="monospace">{`  "tool": "elm_query",`}</text>
-          <text x="20" y="76" fill="#55e1d0" fontSize="8" fontFamily="monospace">{`  "params": { "scope": "qual" } }`}</text>
+          <defs>
+            <filter id="m-glow" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="2.5" result="b" />
+              <feComposite in="SourceGraphic" in2="b" operator="over" />
+            </filter>
+          </defs>
+
+          {/* Left endpoint block */}
+          <rect x="12" y="22" width="46" height="56" rx="3"
+            fill="#071827" stroke="rgba(85,225,208,0.38)" strokeWidth="0.85" />
+          {/* Internal structure lines */}
+          <line x1="20" y1="38" x2="50" y2="38" stroke="rgba(85,225,208,0.45)" strokeWidth="0.9" />
+          <line x1="20" y1="50" x2="48" y2="50" stroke="rgba(85,225,208,0.28)" strokeWidth="0.75" />
+          <line x1="20" y1="62" x2="44" y2="62" stroke="rgba(56,189,248,0.22)" strokeWidth="0.75" />
+          {/* Top highlight */}
+          <line x1="12" y1="22" x2="58" y2="22" stroke="rgba(85,225,208,0.5)" strokeWidth="0.75" />
+
+          {/* Right endpoint block */}
+          <rect x="182" y="22" width="46" height="56" rx="3"
+            fill="#071827" stroke="rgba(56,189,248,0.35)" strokeWidth="0.85" />
+          <line x1="190" y1="38" x2="220" y2="38" stroke="rgba(56,189,248,0.45)" strokeWidth="0.9" />
+          <line x1="190" y1="50" x2="218" y2="50" stroke="rgba(56,189,248,0.28)" strokeWidth="0.75" />
+          <line x1="190" y1="62" x2="214" y2="62" stroke="rgba(85,225,208,0.22)" strokeWidth="0.75" />
+          <line x1="182" y1="22" x2="228" y2="22" stroke="rgba(56,189,248,0.5)" strokeWidth="0.75" />
+
+          {/* Protocol bridge — upper arrow (outbound) */}
+          <line x1="58" y1="42" x2="112" y2="42" stroke="rgba(85,225,208,0.55)" strokeWidth="0.85" />
+          <polygon points="112,42 106,39 106,45" fill="rgba(85,225,208,0.75)" />
+
+          {/* Protocol bridge — lower arrow (inbound) */}
+          <line x1="128" y1="58" x2="182" y2="58" stroke="rgba(56,189,248,0.55)" strokeWidth="0.85" />
+          <polygon points="182,58 176,55 176,61" fill="rgba(56,189,248,0.75)" />
+
+          {/* Central relay node */}
+          <g filter="url(#m-glow)">
+            <circle cx="120" cy="50" r="10" fill="#071827"
+              stroke="#55e1d0" strokeWidth="1" />
+            <circle cx="120" cy="50" r="4"  fill="#55e1d0" opacity="0.85" />
+          </g>
+          {/* Relay ring */}
+          <circle cx="120" cy="50" r="16" fill="none"
+            stroke="rgba(85,225,208,0.2)" strokeWidth="0.65" strokeDasharray="2 4" />
+
+          {/* Connection stubs to relay */}
+          <line x1="112" y1="42" x2="112" y2="42" />
+          <line x1="110" y1="50" x2="104" y2="50" stroke="rgba(85,225,208,0.3)" strokeWidth="0.65" />
+          <line x1="128" y1="58" x2="136" y2="58" />
         </svg>
       )
 
+    /* ── 5. AI-POWERED ENGINEERING TOOLS ─────────────────────────────────────
+       A precision analytical signal — smooth waveform on a baseline grid,
+       with highlighted inflection nodes. No text, no scores. ──────────────── */
     case 'aitools':
-      // Requirements Quality Telemetry HUD
       return (
         <svg viewBox="0 0 240 100" className="bento-svg-diagram" aria-hidden="true">
-          <rect x="10" y="10" width="105" height="80" rx="4" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="20" y="28" fill="#91a8be" fontSize="8" fontFamily="monospace">QUALITY SCORE</text>
-          <text x="20" y="56" fill="#55e1d0" fontSize="20" fontWeight="700" fontFamily="monospace">94.8%</text>
-          <text x="20" y="76" fill="#e5a93c" fontSize="7.5" fontFamily="monospace">STATUS: HIGH</text>
+          <defs>
+            <linearGradient id="w-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#55e1d0" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="#55e1d0" stopOpacity="0" />
+            </linearGradient>
+            <filter id="w-glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="2.2" result="b" />
+              <feComposite in="SourceGraphic" in2="b" operator="over" />
+            </filter>
+          </defs>
 
-          <rect x="125" y="10" width="105" height="80" rx="4" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <text x="135" y="28" fill="#91a8be" fontSize="8" fontFamily="monospace">METRICS</text>
-          <text x="135" y="46" fill="#f3f7fc" fontSize="7.5" fontFamily="monospace">Ambiguity: 0.04</text>
-          <path d="M135,52 H215" stroke="#162c42" strokeWidth="3" rx="1.5" />
-          <path d="M135,52 H145" stroke="#55e1d0" strokeWidth="3" />
-          <text x="135" y="68" fill="#f3f7fc" fontSize="7.5" fontFamily="monospace">Completeness: 98%</text>
-          <path d="M135,74 H215" stroke="#162c42" strokeWidth="3" rx="1.5" />
-          <path d="M135,74 H210" stroke="#38bdf8" strokeWidth="3" />
+          {/* Horizontal grid lines */}
+          <line x1="20" y1="30" x2="220" y2="30" stroke="rgba(85,225,208,0.1)" strokeWidth="0.6" />
+          <line x1="20" y1="50" x2="220" y2="50" stroke="rgba(85,225,208,0.14)" strokeWidth="0.6" />
+          <line x1="20" y1="70" x2="220" y2="70" stroke="rgba(85,225,208,0.1)" strokeWidth="0.6" />
+
+          {/* Vertical grid markers */}
+          <line x1="70"  y1="26" x2="70"  y2="74" stroke="rgba(85,225,208,0.08)" strokeWidth="0.6" />
+          <line x1="120" y1="26" x2="120" y2="74" stroke="rgba(85,225,208,0.08)" strokeWidth="0.6" />
+          <line x1="170" y1="26" x2="170" y2="74" stroke="rgba(85,225,208,0.08)" strokeWidth="0.6" />
+
+          {/* Waveform fill area */}
+          <path
+            d="M20,50 C35,50 45,28 60,28 S80,50 95,50 S110,72 125,72 S145,50 160,50 S175,28 190,28 S210,50 220,50 L220,74 L20,74 Z"
+            fill="url(#w-fill)" />
+
+          {/* Primary waveform stroke */}
+          <path
+            d="M20,50 C35,50 45,28 60,28 S80,50 95,50 S110,72 125,72 S145,50 160,50 S175,28 190,28 S210,50 220,50"
+            fill="none" stroke="#55e1d0" strokeWidth="1.2" strokeLinecap="round" />
+
+          {/* Secondary trace — offset, dimmer */}
+          <path
+            d="M20,55 C35,55 45,36 60,36 S80,55 95,55 S110,74 125,74 S145,55 160,55 S175,36 190,36 S210,55 220,55"
+            fill="none" stroke="rgba(56,189,248,0.28)" strokeWidth="0.7"
+            strokeLinecap="round" strokeDasharray="3 4" />
+
+          {/* Inflection highlight nodes */}
+          <g filter="url(#w-glow)">
+            <circle cx="60"  cy="28" r="3.5" fill="#55e1d0" opacity="0.9" />
+            <circle cx="125" cy="72" r="3.5" fill="#38bdf8" opacity="0.85" />
+            <circle cx="190" cy="28" r="3.5" fill="#55e1d0" opacity="0.9" />
+          </g>
+
+          {/* Small tick marks on baseline */}
+          <line x1="60"  y1="72" x2="60"  y2="76" stroke="rgba(85,225,208,0.3)" strokeWidth="0.75" />
+          <line x1="125" y1="72" x2="125" y2="76" stroke="rgba(85,225,208,0.3)" strokeWidth="0.75" />
+          <line x1="190" y1="72" x2="190" y2="76" stroke="rgba(85,225,208,0.3)" strokeWidth="0.75" />
+
+          {/* Baseline */}
+          <line x1="16" y1="74" x2="224" y2="74"
+            stroke="rgba(85,225,208,0.25)" strokeWidth="0.75" />
+          {/* End caps */}
+          <line x1="16" y1="70" x2="16" y2="78" stroke="rgba(85,225,208,0.25)" strokeWidth="0.75" />
+          <line x1="224" y1="70" x2="224" y2="78" stroke="rgba(85,225,208,0.25)" strokeWidth="0.75" />
         </svg>
       )
 
+    /* ── 6. FRONTEND ENGINEERING ──────────────────────────────────────────────
+       A precise interface schematic: a header bar, two content columns, and
+       a status strip — design-system wireframe, no real app content. ──────── */
     case 'ui':
-      // Carbon Design System Component Architecture Preview
       return (
         <svg viewBox="0 0 340 100" className="bento-svg-diagram" aria-hidden="true">
-          <rect x="10" y="8" width="320" height="84" rx="4" fill="#081827" stroke="#1f4060" strokeWidth="1" />
-          <path d="M10,26 H330" stroke="#162c42" strokeWidth="1" />
-          <circle cx="22" cy="17" r="3" fill="#e5a93c" />
-          <circle cx="32" cy="17" r="3" fill="#55e1d0" />
-          <circle cx="42" cy="17" r="3" fill="#38bdf8" />
-          <text x="60" y="20" fill="#91a8be" fontSize="8" fontFamily="monospace">Carbon Design System // Quality Widget</text>
+          <defs>
+            <filter id="u-glow" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="2" result="b" />
+              <feComposite in="SourceGraphic" in2="b" operator="over" />
+            </filter>
+          </defs>
 
-          {/* Left panel: Requirements scoring card */}
-          <rect x="20" y="34" width="135" height="48" rx="2" fill="#0c2338" stroke="#1f4060" strokeWidth="1" />
-          <text x="28" y="48" fill="#55e1d0" fontSize="8" fontFamily="monospace">Score: 94% · Compliant</text>
-          <path d="M28,56 H145" stroke="#162c42" strokeWidth="1" />
-          <text x="28" y="68" fill="#91a8be" fontSize="7.5" fontFamily="monospace">AI Recommendations: 2</text>
+          {/* Outer frame */}
+          <rect x="14" y="8" width="312" height="84" rx="4"
+            fill="#071827" stroke="rgba(85,225,208,0.3)" strokeWidth="0.85" />
 
-          {/* Right panel: Conversational Chat UI */}
-          <rect x="165" y="34" width="155" height="48" rx="2" fill="#0c2338" stroke="#1f4060" strokeWidth="1" />
-          <text x="175" y="48" fill="#38bdf8" fontSize="8" fontFamily="monospace">Agent Chat Stream</text>
-          <rect x="175" y="54" width="135" height="18" rx="2" fill="#07192b" />
-          <text x="181" y="66" fill="#91a8be" fontSize="7" fontFamily="monospace">"Refine requirement #1042..."</text>
+          {/* Header bar */}
+          <rect x="14" y="8" width="312" height="18" rx="4"
+            fill="rgba(85,225,208,0.06)" />
+          <line x1="14" y1="26" x2="326" y2="26"
+            stroke="rgba(85,225,208,0.28)" strokeWidth="0.75" />
+          {/* Window chrome dots */}
+          <circle cx="26" cy="17" r="2.5" fill="rgba(85,225,208,0.5)" />
+          <circle cx="35" cy="17" r="2.5" fill="rgba(56,189,248,0.4)" />
+          <circle cx="44" cy="17" r="2.5" fill="rgba(85,225,208,0.25)" />
+          {/* Header right element */}
+          <rect x="270" y="11" width="52" height="10" rx="2"
+            fill="rgba(85,225,208,0.08)" stroke="rgba(85,225,208,0.25)" strokeWidth="0.65" />
+
+          {/* Left panel */}
+          <rect x="22" y="33" width="138" height="52" rx="2"
+            fill="rgba(85,225,208,0.04)" stroke="rgba(85,225,208,0.2)" strokeWidth="0.7" />
+          {/* Left panel content lines */}
+          <line x1="30" y1="45" x2="118" y2="45" stroke="rgba(85,225,208,0.35)" strokeWidth="0.85" />
+          <line x1="30" y1="55" x2="140" y2="55" stroke="rgba(85,225,208,0.18)" strokeWidth="0.7" />
+          <line x1="30" y1="64" x2="126" y2="64" stroke="rgba(85,225,208,0.14)" strokeWidth="0.7" />
+          <line x1="30" y1="73" x2="110" y2="73" stroke="rgba(56,189,248,0.18)" strokeWidth="0.7" />
+          {/* Left panel accent chip */}
+          <rect x="30" y="78" width="36" height="5" rx="2"
+            fill="rgba(85,225,208,0.12)" stroke="rgba(85,225,208,0.3)" strokeWidth="0.6" />
+
+          {/* Right panel */}
+          <rect x="170" y="33" width="148" height="52" rx="2"
+            fill="rgba(56,189,248,0.03)" stroke="rgba(56,189,248,0.2)" strokeWidth="0.7" />
+          {/* Right panel top highlight */}
+          <line x1="170" y1="33" x2="318" y2="33" stroke="rgba(56,189,248,0.3)" strokeWidth="0.65" />
+          {/* Right panel content */}
+          <rect x="178" y="41" width="132" height="14" rx="2"
+            fill="rgba(56,189,248,0.06)" stroke="rgba(56,189,248,0.2)" strokeWidth="0.65" />
+          <line x1="178" y1="64" x2="310" y2="64" stroke="rgba(56,189,248,0.16)" strokeWidth="0.7" />
+          <line x1="178" y1="72" x2="296" y2="72" stroke="rgba(85,225,208,0.14)" strokeWidth="0.7" />
+          <line x1="178" y1="80" x2="280" y2="80" stroke="rgba(85,225,208,0.1)" strokeWidth="0.7" />
+
+          {/* Divider between panels */}
+          <line x1="160" y1="33" x2="160" y2="85"
+            stroke="rgba(85,225,208,0.15)" strokeWidth="0.65" strokeDasharray="2 3" />
+
+          {/* Active state accent — left panel heading */}
+          <g filter="url(#u-glow)">
+            <line x1="30" y1="45" x2="70" y2="45"
+              stroke="#55e1d0" strokeWidth="1" />
+          </g>
         </svg>
       )
 
