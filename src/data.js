@@ -12,7 +12,6 @@ export const NAV = [
 
 export const EXPERIENCE = [
   {
-    rev: 'REV B',
     date: 'Jul 2025 — Present',
     title: 'Software Development Engineer',
     org: 'IBM India Software Labs, Gandhinagar',
@@ -24,7 +23,6 @@ export const EXPERIENCE = [
     status: 'Current',
   },
   {
-    rev: 'REV A',
     date: 'Jan 2025 — Jul 2025',
     title: 'Software Development Engineer Intern',
     org: 'IBM India Software Labs, Gandhinagar',
