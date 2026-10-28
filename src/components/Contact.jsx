@@ -4,6 +4,7 @@ import { CONTACT } from '../data.js'
 
 export default function Contact() {
   const links = [
+    CONTACT.whatsapp && { href: CONTACT.whatsapp, label: 'Chat on WhatsApp', ext: true },
     CONTACT.linkedin && { href: CONTACT.linkedin, label: 'LinkedIn', ext: true },
     CONTACT.github && { href: CONTACT.github, label: 'GitHub', ext: true },
     CONTACT.email && { href: `mailto:${CONTACT.email}`, label: 'Email' },

@@ -1,12 +1,14 @@
+import Reveal from './Reveal.jsx'
+
 const YEAR = new Date().getFullYear()
 
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="wrap">
+      <Reveal className="wrap">
         <span>Vatsal Rathod — Software Development Engineer, IBM India Software Labs</span>
         <span>© {YEAR}</span>
-      </div>
+      </Reveal>
     </footer>
   )
 }

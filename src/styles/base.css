@@ -188,13 +188,17 @@ ul, ol {
   transform: translateY(-1px);
 }
 
-/* Reveal */
+/* Reveal – replays in both scroll directions (see Reveal.jsx).
+   Hidden elements always sit nudged AWAY from the viewport. */
 .reveal {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.9s var(--ease) var(--d, 0ms), transform 0.9s var(--ease) var(--d, 0ms);
 }
-.reveal.in {
+.reveal[data-reveal='above'] {
+  transform: translateY(-22px);
+}
+.reveal[data-reveal='in'] {
   opacity: 1;
   transform: none;
 }
@@ -210,7 +214,8 @@ ul, ol {
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
   }
-  .reveal {
+  .reveal,
+  .reveal[data-reveal] {
     opacity: 1;
     transform: none;
   }

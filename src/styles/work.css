@@ -1,0 +1,331 @@
+/* ───────────────────────── Work + Projects ─────────────────────────
+   Editorial case studies: text-led, with real artifacts (code sketch,
+   flows) instead of decorative illustration. */
+
+.work,
+.proj {
+  border-top: 1px solid var(--line);
+}
+
+.wk-lede {
+  margin-top: 28px;
+  max-width: 46ch;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+
+.wk-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.wk-block + .wk-block {
+  margin-top: 32px;
+}
+.wk-block p,
+.wk-list li {
+  margin-top: 12px;
+  max-width: 62ch;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-soft);
+}
+
+/* Featured IBM case study */
+.wk-feature {
+  margin-top: clamp(56px, 8vw, 104px);
+  padding: clamp(24px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 6vw, 88px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    radial-gradient(90% 70% at 100% 0%, rgba(143, 208, 218, 0.07), transparent 60%),
+    var(--bg-raise);
+}
+.wk-side h3 {
+  margin-top: 14px;
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+.wk-meta {
+  margin: 36px 0 0;
+  display: grid;
+  gap: 18px;
+}
+.wk-meta div {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.wk-meta dt {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.wk-meta dd {
+  margin: 6px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.wk-list {
+  display: grid;
+  gap: 4px;
+}
+.wk-list li {
+  position: relative;
+  padding-left: 22px;
+}
+.wk-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.05em;
+  width: 10px;
+  height: 1px;
+  background: var(--cyan-dim);
+}
+
+/* Artifacts: code sketch + flow */
+.wk-artifacts {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 16px;
+  align-items: start;
+}
+.code-fig,
+.flow-fig {
+  margin: 0;
+  padding: clamp(22px, 2.6vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--bg-raise);
+  min-width: 0;
+}
+.code-fig pre {
+  margin: 20px 0 0;
+  padding: 18px 20px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--silver);
+  tab-size: 2;
+}
+.code-fig code {
+  font-family: inherit;
+}
+.flow-caption {
+  margin-top: 16px;
+  max-width: 60ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-mute);
+}
+.wk-note {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--text-mute);
+}
+
+/* Vertical flow */
+.flow {
+  margin-top: 22px;
+  position: relative;
+  display: grid;
+  gap: 18px;
+}
+.flow::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line-hi);
+}
+.flow li {
+  position: relative;
+  padding-left: 26px;
+  display: grid;
+  gap: 2px;
+}
+.flow li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-raise);
+  border: 1px solid var(--silver);
+}
+.flow li:first-child::before,
+.flow li:last-child::before {
+  background: var(--cyan);
+  border-color: var(--cyan);
+}
+.flow strong {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+.flow span {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-mute);
+}
+
+/* Personal projects */
+.pj-list {
+  margin-top: clamp(48px, 7vw, 96px);
+  display: grid;
+  gap: clamp(64px, 9vw, 120px);
+}
+.pj {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.pj:nth-child(even) .pj-art,
+.pj:nth-child(even) .pj-shots {
+  order: -1;
+}
+.pj-copy h3 {
+  margin-top: 14px;
+  margin-bottom: 36px;
+  font-size: clamp(40px, 5.6vw, 76px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.pj-stack {
+  margin-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-mute);
+}
+.pj-status {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--cyan);
+}
+.pj-art {
+  padding: clamp(22px, 2.6vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--bg-raise);
+  min-width: 0;
+}
+.pj-art .flow-fig {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.pj-admin {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--text-soft);
+}
+/* Phone-width app screenshots: a distinct (light) app, so each is framed */
+.pj-shots {
+  margin: 0;
+  min-width: 0;
+}
+.pj-shots-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  align-items: start;
+}
+.pj-shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--bg-raise);
+}
+.pj-shots img:nth-child(2) {
+  margin-top: clamp(20px, 4vw, 48px);
+}
+.pj-shots figcaption {
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--text-mute);
+}
+.case-links {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Earlier work: deliberately quiet */
+.earlier {
+  margin-top: clamp(72px, 10vw, 128px);
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.earlier ul {
+  margin-top: 24px;
+  display: grid;
+  gap: 24px;
+}
+.earlier h3 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.earlier p {
+  margin-top: 6px;
+  max-width: 56ch;
+  font-size: 15px;
+  color: var(--text-soft);
+}
+.earlier .earlier-note {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--text-mute);
+}
+
+@media (max-width: 900px) {
+  .wk-feature,
+  .wk-artifacts,
+  .pj {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pj:nth-child(even) .pj-art,
+  .pj:nth-child(even) .pj-shots {
+    order: 0;
+  }
+  .wk-feature {
+    border-radius: 22px;
+  }
+}
